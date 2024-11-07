@@ -42,10 +42,10 @@
       "type": "enumeration",
       "enum": []
     },
-    "size": {
+    "sizes": {
       "type": "component",
       "repeatable": true,
-      "component": "size"
+      "component": "size.size"
     },
     "discountPrice": {
       "type": "decimal"
