@@ -13,5 +13,32 @@ module.exports = ({ env }) => {
                 },
             },
         },
+        email: {
+            provider: 'smtp',
+            providerOptions: {
+                host: "live.smtp.mailtrap.io",
+                port: 587,
+                secure: false,
+                auth: {
+                    user: env('SMTP_USERNAME'), // your email address or SMTP username
+                    pass: env('SMTP_PASSWORD'), // your email password or SMTP password
+                },
+            },
+            
+            settings: {
+                defaultFrom: 'vencislav2.manoilov@gmail.com',
+                defaultReplyTo: 'vencislav2.manoilov@gmail.com',
+            },
+        },
+        'users-permissions': {
+            config: {
+                email: {
+                    from: 'vencislav2.manoilov@gmail.com',
+                    replyTo: 'vencislav2.manoilov@gmail.com',
+                },
+                emailConfirmation: true,
+                emailConfirmationRedirection: 'https://ink-needles.netlify.app/confirmation',
+            },
+        },
     };
 };
