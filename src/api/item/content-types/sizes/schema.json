@@ -3,7 +3,8 @@
   "collectionName": "components_size",
   "info": {
     "name": "Sizes",
-    "description": "Represents the size options for a product, including stock and availability."
+    "description": "Represents the size options for a product, including stock and availability.",
+    "singularName": "size"
   },
   "attributes": {
     "size": {
