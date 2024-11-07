@@ -45,7 +45,7 @@
     "size": {
       "type": "component",
       "repeatable": true,
-      "component": "sizes"
+      "component": "size"
     },
     "discountPrice": {
       "type": "decimal"
