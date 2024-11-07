@@ -1,0 +1,22 @@
+{
+  "kind": "collectionType",
+  "collectionName": "components_size",
+  "info": {
+    "name": "Size",
+    "description": "Represents the size options for a product, including stock and availability."
+  },
+  "attributes": {
+    "size": {
+      "type": "string",
+      "required": true
+    },
+    "itemsCount": {
+      "type": "integer",
+      "default": 0
+    },
+    "soldOut": {
+      "type": "boolean",
+      "default": false
+    }
+  }
+}

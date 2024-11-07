@@ -42,16 +42,10 @@
       "type": "enumeration",
       "enum": []
     },
-    "itemsCount": {
-      "sizes": {
-        "type": "component",
-        "repeatable": true,
-        "component": "size"
-      },
-      "type": "jsonb"
-    },
-    "soldOut": {
-      "type": "boolean"
+    "sizes": {
+      "type": "component",
+      "repeatable": true,
+      "component": "size"
     },
     "discountPrice": {
       "type": "decimal"
