@@ -2,7 +2,7 @@
   "kind": "collectionType",
   "collectionName": "components_size",
   "info": {
-    "name": "Size",
+    "name": "Sizes",
     "description": "Represents the size options for a product, including stock and availability."
   },
   "attributes": {
