@@ -47,7 +47,8 @@
         "type": "component",
         "repeatable": true,
         "component": "size"
-      }
+      },
+      "type": "jsonb"
     },
     "soldOut": {
       "type": "boolean"
