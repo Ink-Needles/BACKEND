@@ -25,8 +25,8 @@ module.exports = ({ env }) => {
             },
             
             settings: {
-                defaultFrom: 'vencislav2.manoilov@gmail.com',
-                defaultReplyTo: 'vencislav2.manoilov@gmail.com',
+                defaultFrom: 'vencislav.developer@gmail.com',
+                defaultReplyTo: 'vencislav.developer@gmail.com',
             },
         },
         'users-permissions': {
