@@ -18,7 +18,6 @@ module.exports = ({ env }) => {
             providerOptions: {
                 host: env('SMTP_HOST', 'smtp.gmail.com'),
                 port: 587,
-                secure: false,
                 auth: {
                     user: env('SMTP_USERNAME'), // your email address or SMTP username
                     pass: env('SMTP_PASSWORD'), // your email password or SMTP password
@@ -32,10 +31,6 @@ module.exports = ({ env }) => {
         },
         'users-permissions': {
             config: {
-                email: {
-                    from: 'vencislav2.manoilov@gmail.com',
-                    replyTo: 'vencislav2.manoilov@gmail.com',
-                },
                 emailConfirmation: true,
                 emailConfirmationRedirection: 'http://localhost:3000/confirmation',
             },
