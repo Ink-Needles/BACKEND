@@ -1,42 +1,37 @@
 {
-    "kind": "collectionType",
-    "collectionName": "users-permissions_user",
+    "collectionName": "users",
     "info": {
-      "name": "user",
-      "description": ""
+        "name": "user",
+        "description": "User model for the Users & Permissions plugin"
     },
     "options": {
-      "timestamps": true
+        "draftAndPublish": false,
+        "timestamps": true
     },
     "attributes": {
-      "username": {
-        "type": "string",
-        "unique": true,
-        "required": true
-      },
-      "email": {
-        "type": "email",
-        "required": true,
-        "unique": true
-      },
-      "password": {
-        "type": "password",
-        "required": true
-      },
-      "confirmed": {
-        "type": "boolean",
-        "default": false
-      },
-      "confirmationToken": {
-        "type": "string",
-        "default": ""
-      },
-      "role": {
-        "model": "role",
-        "via": "users"
-      }
-    },
-    "singularName": "user",
-    "pluralName": "users",
-    "displayName": "User"
-}
+        "username": {
+            "type": "string",
+            "unique": true,
+            "minLength": 3
+        },
+        "email": {
+            "type": "email",
+            "unique": true
+        },
+        "password": {
+            "type": "password"
+        },
+        "confirmed": {
+            "type": "boolean",
+            "required": false
+        },
+        "confirmationToken": {
+            "type": "string",
+            "default": 0
+        },
+        "role": {
+            "model": "role",
+            "via": "users"
+        }
+    }
+}  
