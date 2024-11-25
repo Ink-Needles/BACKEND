@@ -33,5 +33,7 @@
             "model": "role",
             "via": "users"
         }
-    }
-}  
+    },
+    "singularName": "user",
+    "pluralName": "users"
+} 
