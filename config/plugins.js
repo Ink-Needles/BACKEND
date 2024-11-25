@@ -16,7 +16,7 @@ module.exports = ({ env }) => {
         email: {
             provider: 'smtp',
             providerOptions: {
-                host: "live.smtp.mailtrap.io",
+                host: env('SMTP_HOST', 'smtp.gmail.com'),
                 port: 587,
                 secure: false,
                 auth: {
