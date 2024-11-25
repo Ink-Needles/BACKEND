@@ -28,8 +28,7 @@ module.exports = {
       },
     });
 
-    // @ts-ignore
-    const sanitizedUser = await sanitize.contentAPI.output(newUser);
+    const sanitizedUser = await sanitize.contentAPI.output(newUser, strapi.getModel('plugin::users-permissions.user'));
 
     return ctx.send({ user: sanitizedUser });
   },
