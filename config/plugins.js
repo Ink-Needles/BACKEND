@@ -14,19 +14,15 @@ module.exports = ({ env }) => {
             },
         },
         email: {
-            provider: 'smtp',
-            providerOptions: {
-                host: env('SMTP_HOST', 'smtp.gmail.com'),
-                port: 587,
-                auth: {
-                    user: env('SMTP_USERNAME'), // your email address or SMTP username
-                    pass: env('SMTP_PASSWORD'), // your email password or SMTP password
+            config: {
+                provider: 'sendgrid',
+                providerOptions: {
+                    apiKey: env('SMTP_PASSWORD'),
                 },
-            },
-            
-            settings: {
-                defaultFrom: 'vencislav.developer@gmail.com',
-                defaultReplyTo: 'vencislav.developer@gmail.com',
+                settings: {
+                    defaultFrom: 'vencislav.developer@gmail.com', // Sender's email address
+                    defaultReplyTo: 'vencislav.developer@gmail.com', // Reply-to email address
+                },
             },
         },
         'users-permissions': {
