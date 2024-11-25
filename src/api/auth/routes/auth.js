@@ -1,13 +1,13 @@
 module.exports = {
   routes: [
-    // {
-    //  method: 'GET',
-    //  path: '/auth',
-    //  handler: 'auth.exampleAction',
-    //  config: {
-    //    policies: [],
-    //    middlewares: [],
-    //  },
-    // },
+    {
+      method: 'POST',
+      path: '/auth/local/register',
+      handler: 'custom-register.register',
+      config: {
+        policies: [],
+        middlewares: [],
+      },
+    },
   ],
 };

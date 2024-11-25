@@ -37,7 +37,7 @@ module.exports = ({ env }) => {
                     replyTo: 'vencislav2.manoilov@gmail.com',
                 },
                 emailConfirmation: true,
-                emailConfirmationRedirection: 'https://ink-needles.netlify.app/confirmation',
+                emailConfirmationRedirection: 'https://ink-needles.netlify.app/',
             },
         },
     };
