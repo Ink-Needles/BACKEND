@@ -34,7 +34,7 @@ module.exports = {
     // Send confirmation email
     await strapi.plugins['email'].services.email.send({
       to: email,
-      from: 'your-email@example.com',
+      from: 'vencislav.developer@gmail.com',
       subject: 'Email Confirmation',
       text: `Please confirm your email by clicking on the following link: http://localhost:3000/confirmation?confirmation=${newUser.confirmationToken}`,
       html: `<p>Please confirm your email by clicking on the following link:</p><a href="http://localhost:3000/confirmation?confirmation=${newUser.confirmationToken}">Confirm your email</a>`,
