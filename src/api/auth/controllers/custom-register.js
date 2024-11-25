@@ -19,6 +19,10 @@ module.exports = {
       return ctx.badRequest('Email is already taken');
     }
 
+    const authenticatedRole = await strapi.query('plugin::users-permissions.role').findOne({
+      where: { type: 'authenticated' },
+    });
+
     const newUser = await strapi.query('plugin::users-permissions.user').create({
       data: {
         email,
@@ -26,6 +30,7 @@ module.exports = {
         password,
         confirmed: false,
         confirmationToken: strapi.plugins['users-permissions'].services.jwt.issue({ email }),
+        role: authenticatedRole.id,
       },
     });
 
