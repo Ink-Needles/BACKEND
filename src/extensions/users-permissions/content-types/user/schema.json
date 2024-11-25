@@ -1,0 +1,39 @@
+{
+    "kind": "collectionType",
+    "collectionName": "users-permissions_user",
+    "info": {
+      "name": "user",
+      "description": ""
+    },
+    "options": {
+      "timestamps": true
+    },
+    "attributes": {
+      "username": {
+        "type": "string",
+        "unique": true,
+        "required": true
+      },
+      "email": {
+        "type": "email",
+        "required": true,
+        "unique": true
+      },
+      "password": {
+        "type": "password",
+        "required": true
+      },
+      "confirmed": {
+        "type": "boolean",
+        "default": false
+      },
+      "confirmationToken": {
+        "type": "string",
+        "default": ""
+      },
+      "role": {
+        "model": "role",
+        "via": "users"
+      }
+    }
+  }

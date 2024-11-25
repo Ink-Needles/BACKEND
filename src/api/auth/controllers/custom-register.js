@@ -23,24 +23,26 @@ module.exports = {
       where: { type: 'authenticated' },
     });
 
-    const newUser = await strapi.plugin('users-permissions').service('user').createUser({
-      email,
-      username,
-      password,
-      role: authenticatedRole.id,
+    const newUser = await strapi.query('plugin::users-permissions.user').create({
+      data: {
+        email,
+        username,
+        password,
+        confirmed: false,
+        confirmationToken: strapi.plugins['users-permissions'].services.jwt.issue({ email }),
+        role: authenticatedRole.id,
+      },
     });
 
     const sanitizedUser = await sanitize.contentAPI.output(newUser, strapi.getModel('plugin::users-permissions.user'));
-
-    const confirmationToken = strapi.plugins['users-permissions'].services.jwt.issue({ email });
 
     // Send confirmation email
     await strapi.plugins['email'].services.email.send({
       to: email,
       from: 'vencislav.developer@gmail.com',
       subject: 'Email Confirmation',
-      text: `Please confirm your email by clicking on the following link: http://localhost:3000/confirmation?confirmation=${confirmationToken}`,
-      html: `<p>Please confirm your email by clicking on the following link:</p><a href="http://localhost:3000/confirmation?confirmation=${confirmationToken}">Confirm your email</a>`,
+      text: `Please confirm your email by clicking on the following link: http://localhost:3000/confirmation?confirmation=${newUser.confirmationToken}`,
+      html: `<p>Please confirm your email by clicking on the following link:</p><a href="http://localhost:3000/confirmation?confirmation=${newUser.confirmationToken}">Confirm your email</a>`,
     });
 
     return ctx.send({ user: sanitizedUser });
