@@ -1,25 +1,36 @@
 'use strict';
 
 const { sanitize } = require('@strapi/utils');
+const jwt = require('jsonwebtoken');
 
 module.exports = {
   async updatePersonalData(ctx) {
-    const { id } = ctx.params;
     const { personalData } = ctx.request.body;
 
     if (!personalData) {
       return ctx.badRequest('personalData is required');
     }
 
+    const token = ctx.request.header.authorization;
+    if (!token) {
+      return ctx.unauthorized('Authorization header is missing');
+    }
+
     try {
-      const user = await strapi.query('plugin::users-permissions.user').findOne({ where: { id } });
+      const decoded = jwt.verify(token.replace('Bearer ', ''), strapi.config.get('plugin.users-permissions.jwtSecret'));
+      const userId = (decoded && typeof decoded !== 'string') ? decoded.id : null;
+      if (!userId) {
+        return ctx.unauthorized('Invalid token');
+      }
+
+      const user = await strapi.query('plugin::users-permissions.user').findOne({ where: { id: userId } });
 
       if (!user) {
         return ctx.notFound('User not found');
       }
 
       const updatedUser = await strapi.query('plugin::users-permissions.user').update({
-        where: { id },
+        where: { id: userId },
         data: { personalData },
       });
 
