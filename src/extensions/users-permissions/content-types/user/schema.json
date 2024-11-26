@@ -52,6 +52,9 @@
             "type": "relation",
             "relation": "manyToOne",
             "target": "plugin::users-permissions.role"
+        },
+        "personalData": {
+            "type": "json"
         }
     }
 }

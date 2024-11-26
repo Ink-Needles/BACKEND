@@ -10,13 +10,13 @@ module.exports = {
       },
     },
     {
-      method: 'GET',
-      path: '/auth/custom-email-confirmation',
-      handler: 'custom-email-confirmation.emailConfirmation',
+      method: 'POST',
+      path: '/auth/local/additional-details/:id',
+      handler: 'additional-details.updatePersonalData',
       config: {
-          policies: [],
-          middlewares: [],
+        policies: [],
+        middlewares: [],
       },
-    },
+    }
   ],
 };
