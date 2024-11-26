@@ -27,6 +27,7 @@ module.exports = {
 
       return ctx.send(sanitizedUser);
     } catch (error) {
+      console.error('Error updating personalData:', error);
       return ctx.internalServerError('An error occurred while updating personalData');
     }
   },
