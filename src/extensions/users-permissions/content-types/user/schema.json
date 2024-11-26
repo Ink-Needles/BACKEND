@@ -54,7 +54,12 @@
             "target": "plugin::users-permissions.role"
         },
         "personalData": {
-            "type": "json"
+            "type": "json",
+            "config": {
+                "permissions": {
+                    "view": true
+                }
+            }
         }
     }
 }
