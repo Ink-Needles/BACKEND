@@ -29,7 +29,7 @@ module.exports = {
           email,
           username,
           password,
-          confirmed: false,
+          confirmed: true,
           confirmationToken: strapi.plugins['users-permissions'].services.jwt.issue({ email }),
           role: authenticatedRole.id,
         },
