@@ -30,7 +30,7 @@ module.exports = {
           username,
           password,
           confirmed: true,
-          confirmationToken: strapi.plugins['users-permissions'].services.jwt.issue({ email }),
+          confirmationToken: null,
           role: authenticatedRole.id,
         },
       });
