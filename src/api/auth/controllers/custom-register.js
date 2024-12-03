@@ -37,7 +37,9 @@ module.exports = {
 
       const sanitizedUser = await sanitize.contentAPI.output(newUser, strapi.getModel('plugin::users-permissions.user'));
 
-      return ctx.send({ user: sanitizedUser });
+      const jwt = strapi.plugins['users-permissions'].services.jwt.issue({ id: newUser.id });
+
+      return ctx.send({ jwt, user: sanitizedUser });
     }
 
     const newUser = await strapi.query('plugin::users-permissions.user').create({
