@@ -23,6 +23,8 @@ module.exports = {
       where: { type: 'authenticated' },
     });
 
+    console.log(email, username, password, google);
+
     if(google) {
       const newUser = await strapi.query('plugin::users-permissions.user').create({
         data: {
