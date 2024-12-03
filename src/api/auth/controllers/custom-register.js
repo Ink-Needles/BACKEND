@@ -5,7 +5,7 @@ const { ApplicationError } = require('@strapi/utils').errors;
 
 module.exports = {
   async register(ctx) {
-    const { email, username, password } = ctx.request.body;
+    const { email, username, password, google } = ctx.request.body;
 
     if (!email || !username || !password) {
       return ctx.badRequest('Email, username, and password are required');
@@ -22,6 +22,23 @@ module.exports = {
     const authenticatedRole = await strapi.query('plugin::users-permissions.role').findOne({
       where: { type: 'authenticated' },
     });
+
+    if(google) {
+      const newUser = await strapi.query('plugin::users-permissions.user').create({
+        data: {
+          email,
+          username,
+          password,
+          confirmed: false,
+          confirmationToken: strapi.plugins['users-permissions'].services.jwt.issue({ email }),
+          role: authenticatedRole.id,
+        },
+      });
+
+      const sanitizedUser = await sanitize.contentAPI.output(newUser, strapi.getModel('plugin::users-permissions.user'));
+
+      return ctx.send({ user: sanitizedUser });
+    }
 
     const newUser = await strapi.query('plugin::users-permissions.user').create({
       data: {
