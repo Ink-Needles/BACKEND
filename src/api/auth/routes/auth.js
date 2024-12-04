@@ -11,7 +11,7 @@ module.exports = {
     },
     {
       method: 'POST',
-      path: '/auth/local/register',
+      path: '/auth/local',
       handler: 'custom-login.login',
       config: {
         policies: [],
