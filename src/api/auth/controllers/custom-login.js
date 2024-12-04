@@ -8,7 +8,7 @@ module.exports = {
     const { identifier, password } = ctx.request.body;
 
     if (!identifier || !password) {
-      return ctx.badRequest('Identifier and password are required');
+      return ctx.badRequest('Email and password are required');
     }
 
     const user = await strapi.query('plugin::users-permissions.user').findOne({
@@ -16,13 +16,13 @@ module.exports = {
     });
 
     if (!user) {
-      return ctx.badRequest('Invalid identifier or password');
+      return ctx.internalServerError('User not found');
     }
 
     const validPassword = await strapi.plugins['users-permissions'].services.user.validatePassword(password, user.password);
 
     if (!validPassword) {
-      return ctx.badRequest('Invalid identifier or password');
+      return ctx.badRequest('Invalid email or password');
     }
 
     const jwt = strapi.plugins['users-permissions'].services.jwt.issue({ id: user.id });
