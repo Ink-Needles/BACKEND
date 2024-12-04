@@ -25,7 +25,7 @@ module.exports = {
 
     let hashedPassword = password;
     if (google) {
-      hashedPassword = await strapi.plugins['users-permissions'].services.user.hashPassword({ password });
+      hashedPassword = await strapi.plugins['users-permissions'].services.user.hashPassword(password);
     }
 
     const newUser = await strapi.query('plugin::users-permissions.user').create({
