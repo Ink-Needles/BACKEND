@@ -2,6 +2,7 @@
 
 const { sanitize } = require('@strapi/utils');
 const { ApplicationError } = require('@strapi/utils').errors;
+const bcrypt = require('bcryptjs');
 
 module.exports = {
   async register(ctx) {
@@ -23,10 +24,7 @@ module.exports = {
       where: { type: 'authenticated' },
     });
 
-    let hashedPassword = password;
-    if (google) {
-      hashedPassword = await strapi.plugins['users-permissions'].services.user.hashPassword(password);
-    }
+    let hashedPassword = await bcrypt.hash(password, 10);
 
     const newUser = await strapi.query('plugin::users-permissions.user').create({
       data: {

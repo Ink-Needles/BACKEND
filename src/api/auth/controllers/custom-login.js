@@ -2,6 +2,7 @@
 
 const { sanitize } = require('@strapi/utils');
 const { ApplicationError } = require('@strapi/utils').errors;
+const bcrypt = require('bcryptjs');
 
 module.exports = {
   async login(ctx) {
@@ -19,7 +20,7 @@ module.exports = {
       return ctx.internalServerError('User not found');
     }
 
-    const validPassword = await strapi.plugins['users-permissions'].services.user.validatePassword(password, user.password);
+    const validPassword = await bcrypt.compare(password, user.password);
 
     if (!validPassword) {
       return ctx.badRequest('Invalid email or password');
