@@ -28,7 +28,7 @@ module.exports = ({ env }) => {
         'users-permissions': {
             config: {
                 emailConfirmation: true,
-                emailConfirmationRedirection: 'http://localhost:3000/confirmation',
+                emailConfirmationRedirection: 'https://ink-needles.netlify.app/confirmation',
             },
         },
     };

@@ -45,8 +45,8 @@ module.exports = {
         to: email,
         from: 'vencislav.developer@gmail.com',
         subject: 'Email Confirmation',
-        text: `Please confirm your email by clicking on the following link: http://localhost:3000/confirmation?confirmation=${newUser.confirmationToken}`,
-        html: `<p>Please confirm your email by clicking on the following link:</p><a href="http://localhost:3000/confirmation?confirmation=${newUser.confirmationToken}">Confirm your email</a>`,
+        text: `Please confirm your email by clicking on the following link: https://ink-needles.netlify.app/confirmation?confirmation=${newUser.confirmationToken}`,
+        html: `<p>Please confirm your email by clicking on the following link:</p><a href="https://ink-needles.netlify.app/confirmation?confirmation=${newUser.confirmationToken}">Confirm your email</a>`,
       });
     }
 
