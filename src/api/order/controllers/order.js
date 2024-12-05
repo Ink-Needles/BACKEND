@@ -116,6 +116,9 @@ module.exports = createCoreController("api::order.order", ({ strapi }) => ({
           products: JSON.stringify(products),
           email,
           phoneNumber,
+          billingInformation: JSON.stringify(billingInformation),
+          isSameAddress: JSON.stringify(isSameAddress),
+          shippingInformation: JSON.stringify(shippingInformation)
         },
       });
 
