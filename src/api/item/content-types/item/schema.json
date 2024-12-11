@@ -51,6 +51,9 @@
         "PMU"
       ]
     },
+    "brand": {
+      "type": "string"
+    },
     "sizes": {
       "type": "component",
       "repeatable": true,
