@@ -40,7 +40,16 @@
     },
     "category": {
       "type": "enumeration",
-      "enum": []
+      "enum": [
+        "Machines",
+        "Cartridge needles",
+        "Consumables",
+        "Equipment",
+        "Paints",
+        "Skin care",
+        "Working ointments",
+        "PMU"
+      ]
     },
     "sizes": {
       "type": "component",
