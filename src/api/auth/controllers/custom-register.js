@@ -8,7 +8,7 @@ module.exports = {
   async register(ctx) {
     const { email, username, password, google, sub } = ctx.request.body;
 
-    if (!email || !username || !password) {
+    if (!email || !username || (!password && !sub)) {
       return ctx.badRequest('Email, username, and password are required');
     }
 
