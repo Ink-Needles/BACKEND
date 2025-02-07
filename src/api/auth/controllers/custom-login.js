@@ -20,7 +20,7 @@ module.exports = {
       return ctx.internalServerError('User not found');
     }
 
-    const validPassword = await bcrypt.compare(password, user.password);
+    const validPassword = password ? await bcrypt.compare(password, user.password) : null;
 
     if (!validPassword) {
       return ctx.badRequest('Invalid email or password');
