@@ -22,12 +22,12 @@ module.exports = {
 
     const validPassword = password ? await bcrypt.compare(password, user.password) : null;
 
-    if (!validPassword) {
-      if (sub && user.sub !== sub) {
-        return ctx.badRequest('You cannot log in with this account');
-      } else {
-        return ctx.badRequest('Invalid email or password');
-      }
+    if (!validPassword && !sub) {
+      return ctx.badRequest('Invalid email or password');
+    }
+
+    if (sub && user.sub !== sub) {
+      return ctx.badRequest('You cannot log in with this account');
     }
 
     const jwt = strapi.plugins['users-permissions'].services.jwt.issue({ id: user.id });
