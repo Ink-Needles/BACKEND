@@ -23,11 +23,10 @@ module.exports = {
     const validPassword = password ? await bcrypt.compare(password, user.password) : null;
 
     if (!validPassword) {
-      return ctx.badRequest('Invalid email or password');
-    } else {
-      // if the user sub is not null, it means that the user is logging in with Google and we need to check if the sub is the same so he can log in
       if (sub && user.sub !== sub) {
         return ctx.badRequest('You cannot log in with this account');
+      } else {
+        return ctx.badRequest('Invalid email or password');
       }
     }
 
