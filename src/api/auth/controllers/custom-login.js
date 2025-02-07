@@ -6,9 +6,9 @@ const bcrypt = require('bcryptjs');
 
 module.exports = {
   async login(ctx) {
-    const { identifier, password } = ctx.request.body;
+    const { identifier, password, sub } = ctx.request.body;
 
-    if (!identifier || !password) {
+    if ((!identifier || !password) && !sub) {
       return ctx.badRequest('Email and password are required');
     }
 
@@ -24,6 +24,11 @@ module.exports = {
 
     if (!validPassword) {
       return ctx.badRequest('Invalid email or password');
+    } else {
+      // if the user sub is not null, it means that the user is logging in with Google and we need to check if the sub is the same so he can log in
+      if (sub && user.sub !== sub) {
+        return ctx.badRequest('You cannot log in with this account');
+      }
     }
 
     const jwt = strapi.plugins['users-permissions'].services.jwt.issue({ id: user.id });

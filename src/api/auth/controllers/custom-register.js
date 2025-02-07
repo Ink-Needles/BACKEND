@@ -6,7 +6,7 @@ const bcrypt = require('bcryptjs');
 
 module.exports = {
   async register(ctx) {
-    const { email, username, password, google } = ctx.request.body;
+    const { email, username, password, google, sub } = ctx.request.body;
 
     if (!email || !username || !password) {
       return ctx.badRequest('Email, username, and password are required');
@@ -24,7 +24,7 @@ module.exports = {
       where: { type: 'authenticated' },
     });
 
-    let hashedPassword = await bcrypt.hash(password, 10);
+    let hashedPassword = password ? await bcrypt.hash(password, 10) : null;
 
     const newUser = await strapi.query('plugin::users-permissions.user').create({
       data: {
@@ -34,6 +34,7 @@ module.exports = {
         confirmed: google ? true : false,
         confirmationToken: google ? null : strapi.plugins['users-permissions'].services.jwt.issue({ email }),
         role: authenticatedRole.id,
+        sub: google ? sub : null,
       },
     });
 

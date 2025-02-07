@@ -32,6 +32,10 @@
             "private": true,
             "minLength": 6
         },
+        "sub": {
+            "type": "string",
+            "private": true
+        },
         "resetPasswordToken": {
             "type": "string",
             "private": true
